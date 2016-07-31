@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Books</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Thông tin sách</h2>
+    <form action="/books/search" method="get">
+        <table class="table">
+            <tr>
+                <td><input type="text" name="nameSearch" class="col-md-2 form-control" placeholder="Tên sách..."></td>
+                <td><input type="text" name="authorSearch" class="col-md-2 form-control" placeholder="Tác giả..."></td>
+                <td><input type="text" name="cateSearch" class="col-md-2 form-control" placeholder="Thể loại..."></td>
+                <td><button type="submit" class="btn btn-primary">Tìm kiếm</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <a href="/books/add-book" class="btn btn-primary" style="margin-bottom: 20px;">Thêm sách</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên sách</th>
+            <th>Tác giả</th>
+            <th>Thể loại</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% if(books.length){
+            for(var i = 0; i < books.length; i++){ %>
+            <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= books[i].bookName %></td>
+                <td><%= books[i].author %></td>
+                <td><%= books[i].category %></td>
+                <td>
+                    <a href="/books/edit/<%=books[i].id %>" class="btn btn-default">Edit</a>
+                    <a href="/books/delete/<%=books[i].id %>" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            <%
+            }
+            }
+            else { %>
+            <tr>
+                <td colspan="5">Không có bản ghi nào</td>
+            </tr>
+            <% } %>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>
