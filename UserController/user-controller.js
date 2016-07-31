@@ -9,10 +9,6 @@ exports.register = function (req, res) {
     res.render('register');
 };
 
-exports.checkRegister = function (req, res) {
-
-};
-
 exports.store = function (req, res) {
     var validateForm = new Promise(function (resolve, reject) {
         if(! req.body.username || ! req.body.password || ! req.body.email || ! req.body.phone){
